@@ -136,6 +136,19 @@ elseif ( class == "ROGUE" ) then
 			end
 		end
 	end
+else
+	CreateFrame("GameTooltip", "StealthOverlayScanner", nil, "GameTooltipTemplate");
+	StealthOverlayScanner:SetOwner(WorldFrame, "ANCHOR_NONE");
+	
+	function StealthOverlay_HasAura(unit, name)
+		StealthOverlayScanner:ClearLines()
+		for i=1,32 do
+			StealthOverlayScanner:SetUnitBuff(unit,i)
+			if ( StealthOverlayScannerTextLeft1:GetText() == name ) then 
+				return true
+			end
+		end
+	end
 end
 
 function StealthOverlay_OnUpdate(arg1)
